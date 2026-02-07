@@ -101,13 +101,6 @@ Las contribuciones son bienvenidas. Para contribuir:
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
-## 👨‍💻 Autor
-
-**Ignacio Gallardo Sánchez**
-- 🌐 Portfolio: [ignaciogallardo.dev](https://ignaciogallardo.dev)
-- 📧 Email: [tu-email@ejemplo.com]
-- 💼 LinkedIn: [Tu LinkedIn]
-- 🐙 GitHub: [@tu-usuario]
 
 ---
 
