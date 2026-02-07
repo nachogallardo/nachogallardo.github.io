@@ -222,12 +222,10 @@ export function Header() {
     }
   };
 
-  const showProjects = process.env.NEXT_PUBLIC_SHOW_PROJECTS === 'true';
-
   const navLinks = [
     { href: "/#about", text: "Sobre mí" },
     { href: "/#habilidades", text: "Habilidades" },
-    ...(showProjects ? [{ href: "/#proyectos", text: "Proyectos" }] : []),
+    { href: "/#proyectos", text: "Proyectos" },
     { href: "/#contact", text: "Contacto" },
   ];
 

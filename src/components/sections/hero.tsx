@@ -10,7 +10,7 @@ import { ScrambleText } from '@/components/scramble-text';
 export function HeroSection() {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
-  const showProjects = process.env.NEXT_PUBLIC_SHOW_PROJECTS === 'true';
+
 
   useEffect(() => {
     setIsVisible(true);
@@ -172,31 +172,29 @@ export function HeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 pt-4 sm:pt-8 w-full max-w-md mx-auto sm:max-w-none">
-              {showProjects && (
-                <Button
-                  onClick={handleProjectsNavigation}
-                  size="lg"
-                  className="relative w-full sm:w-auto h-14 sm:h-16 px-6 sm:px-10 bg-black/60 text-green-500 border border-green-500/20 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-500 animate-slide-up group overflow-hidden rounded-none shadow-[0_0_20px_rgba(0,0,0,0.5)]"
-                  style={{ animationDelay: '0.9s' }}
-                >
-                  <span className="flex items-center justify-center relative z-10 font-mono font-bold tracking-[0.2em] text-xs sm:text-sm">
-                    <Briefcase className="mr-3 h-4 w-4 sm:h-5 sm:w-5 relative z-10" />
-                    <ScrambleText text="PROJECTS.EXE" isVisible={isVisible} delay={1200} triggerOnHover={true} />
-                  </span>
+              <Button
+                onClick={handleProjectsNavigation}
+                size="lg"
+                className="relative w-full sm:w-auto h-14 sm:h-16 px-6 sm:px-10 bg-black/60 text-green-500 border border-green-500/20 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-500 animate-slide-up group overflow-hidden rounded-none shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                style={{ animationDelay: '0.9s' }}
+              >
+                <span className="flex items-center justify-center relative z-10 font-mono font-bold tracking-[0.2em] text-xs sm:text-sm">
+                  <Briefcase className="mr-3 h-4 w-4 sm:h-5 sm:w-5 relative z-10" />
+                  <ScrambleText text="PROJECTS.EXE" isVisible={isVisible} delay={1200} triggerOnHover={true} />
+                </span>
 
-                  {/* Button HUD Corners */}
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
-                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
+                {/* Button HUD Corners */}
+                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
+                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
 
-                  {/* Internal Scanline Pulse */}
-                  <div className="absolute inset-x-0 h-[100%] w-[1px] bg-green-400/10 left-0 opacity-0 group-hover:opacity-100 group-hover:animate-scan-slow pointer-events-none"></div>
-                </Button>
-              )}
+                {/* Internal Scanline Pulse */}
+                <div className="absolute inset-x-0 h-[100%] w-[1px] bg-green-400/10 left-0 opacity-0 group-hover:opacity-100 group-hover:animate-scan-slow pointer-events-none"></div>
+              </Button>
               <Button
                 onClick={handleEstablishConnection}
                 size="lg"
                 className="relative w-full sm:w-auto h-14 sm:h-16 px-6 sm:px-10 bg-black/60 text-green-500 border border-green-500/20 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-500 animate-slide-up group overflow-hidden rounded-none shadow-[0_0_20px_rgba(0,0,0,0.5)]"
-                style={{ animationDelay: showProjects ? '1.2s' : '0.9s' }}
+                style={{ animationDelay: '1.2s' }}
               >
                 <span className="flex items-center justify-center relative z-10 font-mono font-bold tracking-[0.2em] text-xs sm:text-sm">
                   <ScrambleText text="ESTABLISH_CONNECTION" isVisible={isVisible} delay={1400} triggerOnHover={true} />
