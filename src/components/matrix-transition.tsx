@@ -39,7 +39,7 @@ export function MatrixTransition({ isActive: propsActive, variant: propsVariant,
         if (isActive) {
             document.body.style.overflow = 'hidden';
             setShowOverlay(true);
-            const duration = variant === 'reboot' ? 1000 : 1500;
+            const duration = variant === 'reboot' ? 800 : 400;
             const timer = setTimeout(() => {
                 if (onComplete) onComplete();
                 setIsActive(false); // Auto-deactivate after completion

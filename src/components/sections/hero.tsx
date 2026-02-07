@@ -37,7 +37,7 @@ export function HeroSection() {
           behavior: 'smooth'
         });
       }
-    }, 1000);
+    }, 100);
   }, []);
 
   const handleEstablishConnection = useCallback((e: React.MouseEvent) => {
@@ -61,7 +61,7 @@ export function HeroSection() {
           behavior: 'smooth'
         });
       }
-    }, 800);
+    }, 100);
   }, []);
 
   return (
