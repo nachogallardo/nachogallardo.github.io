@@ -10,7 +10,7 @@ interface ScrambleTextProps {
     step?: number;
 }
 
-export function ScrambleText({ text, delay = 0, isVisible, triggerOnHover = false, step = 1 / 3 }: ScrambleTextProps) {
+export function ScrambleText({ text, delay = 0, isVisible, triggerOnHover = false, step = 1 }: ScrambleTextProps) {
     const [displayText, setDisplayText] = useState(text);
     const chars = "01田由甲申电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐";
     const intervalRef = useRef<NodeJS.Timeout | null>(null);

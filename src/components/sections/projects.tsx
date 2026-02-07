@@ -115,7 +115,7 @@ export function ProjectsSection() {
 
                   <h2 className="relative font-headline text-4xl sm:text-6xl md:text-7xl font-bold tracking-tighter text-white drop-shadow-[0_0_25px_rgba(0,255,0,0.15)] leading-tight italic uppercase px-4">
                     <span className="relative z-10 block">
-                      <ScrambleText text="MIS PROYECTOS" isVisible={isVisible} delay={500} step={1} />
+                      <ScrambleText text="MIS PROYECTOS" isVisible={isVisible} delay={500} />
                     </span>
                   </h2>
                 </div>

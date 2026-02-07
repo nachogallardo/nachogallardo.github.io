@@ -10,44 +10,7 @@ import { Mail, Linkedin, Github, MessageCircle, MapPin, Clock, Send, CheckCircle
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { toast } from '@/hooks/use-toast';
 import { MatrixAnimation } from '@/components/matrix-animation';
-
-// Helper component for scrambling text on visibility
-function ScrambleText({ text, delay = 0, isVisible }: { text: string; delay?: number; isVisible: boolean }) {
-  const [displayText, setDisplayText] = useState(text);
-  const chars = "01田由甲申电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐";
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const startScramble = useCallback(() => {
-    let iteration = 0;
-    if (intervalRef.current) clearInterval(intervalRef.current);
-
-    intervalRef.current = setInterval(() => {
-      setDisplayText(
-        text.split("").map((char, index) => {
-          if (index < iteration) return text[index];
-          return chars[Math.floor(Math.random() * chars.length)];
-        }).join("")
-      );
-
-      if (iteration >= text.length) {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-      }
-      iteration += 1 / 3;
-    }, 30);
-  }, [text]);
-
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(startScramble, delay);
-      return () => {
-        clearTimeout(timer);
-        if (intervalRef.current) clearInterval(intervalRef.current);
-      };
-    }
-  }, [isVisible, startScramble, delay]);
-
-  return <span>{displayText}</span>;
-}
+import { ScrambleText } from '@/components/scramble-text';
 
 // Technical HUD container helper
 function HUDCard({ children, className = "", style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {

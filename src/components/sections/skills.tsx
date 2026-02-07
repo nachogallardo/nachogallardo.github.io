@@ -4,44 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Code, Database, Wrench, Rocket, Users, Network, Terminal } from 'lucide-react';
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { MatrixAnimation } from '@/components/matrix-animation';
-
-// Helper component for scrambling text on visibility - FASTER for titles
-function ScrambleText({ text, delay = 0, isVisible, step = 1 }: { text: string; delay?: number; isVisible: boolean; step?: number }) {
-  const [displayText, setDisplayText] = useState(text);
-  const chars = "01田由甲申电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐";
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const startScramble = useCallback(() => {
-    let iteration = 0;
-    if (intervalRef.current) clearInterval(intervalRef.current);
-
-    intervalRef.current = setInterval(() => {
-      setDisplayText(
-        text.split("").map((char, index) => {
-          if (index < iteration) return text[index];
-          return chars[Math.floor(Math.random() * chars.length)];
-        }).join("")
-      );
-
-      if (iteration >= text.length) {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-      }
-      iteration += step;
-    }, 30);
-  }, [text, step]);
-
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(startScramble, delay);
-      return () => {
-        clearTimeout(timer);
-        if (intervalRef.current) clearInterval(intervalRef.current);
-      };
-    }
-  }, [isVisible, startScramble, delay]);
-
-  return <span>{displayText}</span>;
-}
+import { ScrambleText } from '@/components/scramble-text';
 
 // Technical HUD container helper
 function HUDCard({ children, className = "", style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
@@ -130,12 +93,12 @@ export function SkillsSection() {
             <div className={`flex items-center justify-center gap-3 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <Terminal className="text-green-500 animate-pulse" size={20} />
               <span className="text-green-500 font-mono text-xs uppercase tracking-[0.4em] font-bold">
-                <ScrambleText text="CAPABILITIES_DIAGNOSTIC" isVisible={isVisible} delay={400} step={1} />
+                <ScrambleText text="CAPABILITIES_DIAGNOSTIC" isVisible={isVisible} delay={400} />
               </span>
             </div>
 
             <h2 className="font-headline text-4xl font-black tracking-tighter sm:text-5xl lg:text-6xl text-white uppercase italic">
-              <ScrambleText text="Mi Stack Tecnológico" isVisible={isVisible} delay={800} step={1} />
+              <ScrambleText text="Mi Stack Tecnológico" isVisible={isVisible} delay={800} />
             </h2>
 
             <div className={`flex items-center justify-center gap-4 transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ transitionDelay: '1.2s' }}>
