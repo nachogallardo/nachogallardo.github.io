@@ -1,13 +1,52 @@
 "use client";
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Briefcase, Sparkles } from 'lucide-react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { useEffect, useState } from 'react';
+import { ArrowRight, Briefcase } from 'lucide-react';
+import { useEffect, useState, useRef, useCallback } from 'react';
+import { MatrixAnimation } from '@/components/matrix-animation';
 
-const heroImage = PlaceHolderImages.find(img => img.id === 'hero-banner');
+// Helper component for scrambling text on visibility/hover
+function ScrambleText({ text, delay = 0, isVisible, triggerOnHover = false }: { text: string; delay?: number; isVisible: boolean; triggerOnHover?: boolean }) {
+  const [displayText, setDisplayText] = useState(text);
+  const chars = "01田由甲申电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐";
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startScramble = useCallback(() => {
+    let iteration = 0;
+    if (intervalRef.current) clearInterval(intervalRef.current);
+
+    intervalRef.current = setInterval(() => {
+      setDisplayText(
+        text.split("").map((char, index) => {
+          if (index < iteration) return text[index];
+          return chars[Math.floor(Math.random() * chars.length)];
+        }).join("")
+      );
+
+      if (iteration >= text.length) {
+        if (intervalRef.current) clearInterval(intervalRef.current);
+      }
+      iteration += 1 / 3;
+    }, 30);
+  }, [text]);
+
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(startScramble, delay);
+      return () => {
+        clearTimeout(timer);
+        if (intervalRef.current) clearInterval(intervalRef.current);
+      };
+    }
+  }, [isVisible, startScramble, delay]);
+
+  return (
+    <span onMouseEnter={triggerOnHover ? startScramble : undefined}>
+      {displayText}
+    </span>
+  );
+}
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,88 +56,203 @@ export function HeroSection() {
     setIsVisible(true);
   }, []);
 
+  const handleEstablishConnection = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+
+    // Dispatch global surge transition
+    window.dispatchEvent(new CustomEvent('dispatch-transition', {
+      detail: { variant: 'surge' }
+    }));
+
+    // Smooth scroll after data surge peaks
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        const offset = 96;
+        const elementPosition = contactSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 800);
+  }, []);
+
   return (
-    <section id="home" className="relative w-full h-screen flex items-center justify-center text-center overflow-hidden">
-      {heroImage && (
-        <Image
-          src={heroImage.imageUrl}
-          alt={heroImage.description}
-          fill
-          className="object-cover transition-transform duration-1000 hover:scale-105"
-          priority
-          data-ai-hint={heroImage.imageHint}
-        />
-      )}
-      
-      {/* Gradiente overlay mejorado para mejor legibilidad */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/80" aria-hidden="true" />
-      
-      {/* Overlay adicional para texto */}
-      <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
-      
-      {/* Efectos de partículas decorativas */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-2 h-2 bg-primary/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-1 h-1 bg-accent/40 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-32 left-20 w-3 h-3 bg-primary/20 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-20 right-10 w-2 h-2 bg-accent/30 rounded-full animate-pulse" style={{animationDelay: '3s'}}></div>
+    <section id="home" className="relative w-full h-screen flex items-center justify-center text-center overflow-hidden bg-black font-sans">
+
+      {/* background Matrix - Vibrant */}
+      <div className="absolute inset-0 opacity-80" style={{ maskImage: 'linear-gradient(to bottom, black 85%, transparent)' }}>
+        <MatrixAnimation color="#0F0" fontSize={14} speed={30} isVibrant={true} density={0.98} />
       </div>
 
+      {/* Scanline Effect Overlay suave */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[1] opacity-[0.05]"
+        style={{
+          background: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04))',
+          backgroundSize: '100% 4px, 3px 100%'
+        }}
+      />
+
+      {/* Gradiente radial para viñeta global */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.85)_100%)] z-[2]" aria-hidden="true" />
+
       <div className="relative z-10 container px-4 md:px-6">
-        <div className={`max-w-4xl mx-auto space-y-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Fondo semi-transparente para el texto */}
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm rounded-3xl -m-8 p-8"></div>
-          <div className="relative z-10">
-            <h1 className="font-headline text-4xl font-bold tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-7xl text-outline">
-              Ignacio Gallardo Sánchez
-            </h1>
-            <Sparkles className="absolute -top-4 -right-4 text-primary animate-pulse drop-shadow-lg" size={24} />
+        <div className={`relative max-w-4xl mx-auto py-8 px-4 sm:py-12 sm:px-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+
+          {/* Central Content Card with Integrated Matrix - HUD Style */}
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-3xl rounded-sm border border-green-500/10 shadow-[0_0_80px_rgba(0,0,0,0.9)] overflow-hidden">
+            {/* ... Integrated Matrix stays same ... */}
+            <div className="absolute inset-0 opacity-20">
+              <MatrixAnimation color="#0F0" fontSize={12} speed={60} isVibrant={false} density={0.9} />
+            </div>
+
+            {/* HUD Elements */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-green-500/40"></div>
+            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-green-500/40"></div>
+            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-green-500/40"></div>
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-green-500/40"></div>
+
+            {/* Dynamic Scanline pulse */}
+            <div className="absolute inset-x-0 top-0 h-[2px] bg-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.5)] animate-scan"></div>
+
+            {/* Gradient overlay for text legibility */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none"></div>
+
+            {/* Internal tech accent */}
+            <div className="absolute top-0 right-0 p-4 opacity-20">
+              <div className="w-8 h-1 sm:w-12 bg-green-500 mb-1"></div>
+              <div className="w-6 h-1 sm:w-8 bg-green-500/50"></div>
+            </div>
           </div>
-          
-          <p className="relative z-10 text-lg text-white md:text-xl max-w-xl mx-auto leading-relaxed text-outline-light">
-            <span className="inline-block animate-slide-up font-medium" style={{animationDelay: '0.3s'}}>
-              Desarrollador Java Certificado.
-            </span>
-            <br />
-            <span className="inline-block animate-slide-up text-gray-100 font-semibold" style={{animationDelay: '0.6s'}}>
-              Creando soluciones eficientes y escalables.
-            </span>
-          </p>
-          
-          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
-            {showProjects && (
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-gradient-to-r from-accent to-primary text-white hover:from-accent/90 hover:to-primary/90 transform hover:scale-105 transition-all duration-300 hover-glow animate-slide-up"
-                style={{animationDelay: '0.9s'}}
+
+          {/* Content */}
+          <div className="relative z-20 space-y-6 sm:space-y-8">
+            <div className="space-y-4">
+              {/* Identity HUD Block */}
+              <div className="relative inline-block mx-auto pb-10 sm:pb-14">
+                {/* HUD Metadata Tags */}
+                <div className="absolute -top-7 sm:-top-10 left-0 flex items-center gap-1 sm:gap-2 text-[8px] sm:text-[10px] font-mono text-green-500/60 uppercase tracking-widest animate-fade-in opacity-0" style={{ animationDelay: '1.8s', animationFillMode: 'forwards' }}>
+                  <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-green-500"></div>
+                  [IDENT_PROCESS: 0x77A2]
+                </div>
+                <div className="absolute -top-7 sm:-top-10 right-0 text-[8px] sm:text-[10px] font-mono text-green-500/60 uppercase tracking-widest animate-fade-in opacity-0" style={{ animationDelay: '2.2s', animationFillMode: 'forwards' }}>
+                  [ACCESS: <span className="text-green-400">GRANTED</span>]
+                </div>
+
+                {/* Glitch Typography */}
+                <h1 className="relative font-headline text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_0_25px_rgba(0,255,0,0.15)] leading-tight italic uppercase group px-4">
+                  <span className="relative z-10 block">
+                    <ScrambleText text="Ignacio Gallardo Sánchez" isVisible={isVisible} delay={400} />
+                  </span>
+                  {/* Persistent Glitch Layers */}
+                  <span className="absolute inset-0 z-0 text-red-500/30 translate-x-[2px] -translate-y-[1px] opacity-0 group-hover:opacity-100 animate-glitch-fast pointer-events-none select-none px-4">
+                    Ignacio Gallardo Sánchez
+                  </span>
+                  <span className="absolute inset-0 z-0 text-cyan-500/30 -translate-x-[2px] translate-y-[1px] opacity-0 group-hover:opacity-100 animate-glitch-slow pointer-events-none select-none px-4">
+                    Ignacio Gallardo Sánchez
+                  </span>
+                </h1>
+
+                {/* Bottom HUD Metadata */}
+                <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 text-[8px] sm:text-[9px] font-mono text-green-500/40 uppercase tracking-[0.2em] sm:tracking-[0.4em] whitespace-nowrap animate-fade-in opacity-0" style={{ animationDelay: '2.6s', animationFillMode: 'forwards' }}>
+                  [SYSTEM_STATUS: <span className="text-green-500">STABLE_V2.4</span>]
+                </div>
+
+                {/* Visual HUD Brackets */}
+                <div className="absolute -inset-x-1 sm:-inset-x-4 -inset-y-2 border-x border-green-500/10 pointer-events-none">
+                  <div className="absolute top-0 left-0 w-2 sm:w-4 h-[1px] bg-green-500/20"></div>
+                  <div className="absolute top-0 right-0 w-2 sm:w-4 h-[1px] bg-green-500/20"></div>
+                  <div className="absolute bottom-0 left-0 w-2 sm:w-4 h-[1px] bg-green-500/20"></div>
+                  <div className="absolute bottom-0 right-0 w-2 sm:w-4 h-[1px] bg-green-500/20"></div>
+                </div>
+              </div>
+
+              <div className="relative h-1 w-32 sm:w-48 mx-auto overflow-hidden mt-4 sm:mt-6">
+                <div className="absolute inset-0 bg-green-500/20"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400 to-transparent animate-shimmer"></div>
+              </div>
+            </div>
+
+            <p className="relative z-10 text-base sm:text-lg text-green-100/90 md:text-xl max-w-xl mx-auto leading-relaxed font-mono tracking-tight">
+              <span className="inline-block animate-slide-up font-medium" style={{ animationDelay: '0.3s' }}>
+                {">"} // CERTIFIED JAVA DEVELOPER
+              </span>
+              <br />
+              <span className="inline-block animate-slide-up text-green-400/80 font-bold tracking-[0.1em]" style={{ animationDelay: '0.6s' }}>
+                CREATING SCALABLE SOLUTIONS_
+              </span>
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 pt-4 sm:pt-8">
+              {showProjects && (
+                <Button
+                  asChild
+                  size="lg"
+                  className="relative h-16 px-10 bg-black/60 text-green-500 border border-green-500/20 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-500 animate-slide-up group overflow-hidden rounded-none shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                  style={{ animationDelay: '0.9s' }}
+                >
+                  <Link href="/proyectos" className="flex items-center">
+                    <Briefcase className="mr-3 h-5 w-5 relative z-10" />
+                    <span className="font-mono font-bold tracking-[0.2em] relative z-10">
+                      <ScrambleText text="PROJECTS.EXE" isVisible={isVisible} delay={1200} triggerOnHover={true} />
+                    </span>
+
+                    {/* Button HUD Corners */}
+                    <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
+                    <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
+
+                    {/* Internal Scanline Pulse */}
+                    <div className="absolute inset-x-0 h-[100%] w-[1px] bg-green-400/10 left-0 opacity-0 group-hover:opacity-100 group-hover:animate-scan-slow pointer-events-none"></div>
+                  </Link>
+                </Button>
+              )}
+              <Button
+                onClick={handleEstablishConnection}
+                size="lg"
+                className="relative h-16 px-10 bg-black/60 text-green-500 border border-green-500/20 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-500 animate-slide-up group overflow-hidden rounded-none shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                style={{ animationDelay: showProjects ? '1.2s' : '0.9s' }}
               >
-                <Link href="/proyectos">
-                  <Briefcase className="mr-2 h-5 w-5" />
-                  Mis Proyectos
-                </Link>
+                <span className="flex items-center relative z-10 font-mono font-bold tracking-[0.2em]">
+                  <ScrambleText text="ESTABLISH_CONNECTION" isVisible={isVisible} delay={1400} triggerOnHover={true} />
+                  <ArrowRight className="ml-4 h-5 w-5 transition-transform group-hover:translate-x-2" />
+                </span>
+
+                {/* Button HUD Corners */}
+                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
+                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
+
+                {/* Internal Scanline Pulse */}
+                <div className="absolute inset-x-0 h-[100%] w-[1px] bg-green-400/10 left-0 opacity-0 group-hover:opacity-100 group-hover:animate-scan-slow pointer-events-none"></div>
               </Button>
-            )}
-            <Button 
-              asChild 
-              size="lg" 
-              variant="outline" 
-              className="border-2 border-primary/50 text-primary hover:bg-primary hover:text-white glass-effect-dark hover:border-primary transform hover:scale-105 transition-all duration-300 animate-slide-up"
-              style={{animationDelay: showProjects ? '1.2s' : '0.9s'}}
-            >
-              <Link href="#contact">
-                Hablemos
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Indicador de scroll */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
+      {/* Section Bridge - Technical Handover Divider */}
+      <div className="absolute bottom-0 left-0 w-full z-30 pointer-events-none pb-4 px-6 md:px-12 flex items-end justify-between overflow-hidden">
+        {/* Left Handover Data */}
+        <div className="flex flex-col gap-1 items-start">
+          <div className="flex items-center gap-2">
+            <div className="w-1 h-1 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-[10px] font-mono text-green-500/50 uppercase tracking-[0.2em]">PROTOCOL_HANDOVER</span>
+          </div>
+          <div className="h-[1px] w-24 sm:w-32 bg-gradient-to-r from-green-500/40 to-transparent"></div>
+        </div>
+
+        {/* Central HUD Line */}
+        <div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-green-500/20 to-transparent">
+          <div className="absolute top-0 left-1/4 w-1/2 h-full bg-green-400/40 animate-scan-slow"></div>
+        </div>
+
+        {/* Right Node Metadata */}
+        <div className="flex flex-col gap-1 items-end">
+          <span className="text-[10px] font-mono text-green-500/50 uppercase tracking-[0.2em]">NODE_SYNC_2026</span>
+          <div className="h-[1px] w-24 sm:w-32 bg-gradient-to-l from-green-500/40 to-transparent"></div>
         </div>
       </div>
     </section>

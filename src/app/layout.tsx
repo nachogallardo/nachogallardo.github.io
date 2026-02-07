@@ -1,8 +1,9 @@
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Toaster } from "@/components/ui/toaster";
 import { CustomCursor } from '@/components/cursor';
+import { MatrixTransition } from '@/components/matrix-transition';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -62,17 +63,17 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
         <meta name="theme-color" content="#0f172a" />
         <meta name="color-scheme" content="dark" />
-         <meta httpEquiv="Permissions-Policy" content="private-state-token-redemption=*, private-state-token-issuance=*" />
+        <meta httpEquiv="Permissions-Policy" content="private-state-token-redemption=*, private-state-token-issuance=*" />
       </head>
       <body className="font-body bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
         <CustomCursor />
-        
         <Header />
         <main className="relative">
           {children}
         </main>
         <Footer />
         <Toaster />
+        <MatrixTransition />
       </body>
     </html>
   );
