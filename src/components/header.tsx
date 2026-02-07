@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { Github, Linkedin, Menu, X, Code } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { MatrixAnimation } from "@/components/matrix-animation";
 
@@ -141,6 +141,7 @@ function MobileNavLink({ text, onClick, delay }: { text: string; onClick: () => 
 }
 
 export function Header() {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrambleName, setScrambleName] = useState("Ignacio Gallardo");
@@ -196,8 +197,15 @@ export function Header() {
   const handleLinkClick = (href: string) => {
     setIsMenuOpen(false);
 
-    if (href.startsWith('#')) {
-      const elementId = href.substring(1);
+    if (href.startsWith('/#')) {
+      const elementId = href.substring(2);
+      if (pathname !== '/') {
+        // If not on home, navigate to home with the hash
+        router.push(href);
+        return;
+      }
+
+      // If already on home, scroll smoothly
       const element = document.getElementById(elementId);
       if (element) {
         const offset = 96; // Header height
@@ -209,16 +217,18 @@ export function Header() {
           behavior: "smooth"
         });
       }
+    } else if (href.startsWith('/')) {
+      router.push(href);
     }
   };
 
   const showProjects = process.env.NEXT_PUBLIC_SHOW_PROJECTS === 'true';
 
   const navLinks = [
-    { href: "#about", text: "Sobre mí" },
-    { href: "#habilidades", text: "Habilidades" },
-    ...(showProjects ? [{ href: "#proyectos", text: "Proyectos" }] : []),
-    { href: "#contact", text: "Contacto" },
+    { href: "/#about", text: "Sobre mí" },
+    { href: "/#habilidades", text: "Habilidades" },
+    ...(showProjects ? [{ href: "/#proyectos", text: "Proyectos" }] : []),
+    { href: "/#contact", text: "Contacto" },
   ];
 
   return (
@@ -316,7 +326,7 @@ export function Header() {
 
       {/* Menú móvil mejorado - Matrix Style */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-black/98 backdrop-blur-3xl border-b border-green-500/50 animate-slide-up relative overflow-hidden min-h-[70vh] flex flex-col">
+        <div className="lg:hidden fixed inset-0 z-40 bg-black/98 backdrop-blur-3xl border-b border-green-500/50 animate-slide-up relative overflow-hidden h-[100dvh] flex flex-col pt-24">
           {/* Matrix Rain Background */}
           <div className="absolute inset-0 opacity-20 pointer-events-none">
             <MatrixAnimation color="#0F0" fontSize={14} speed={40} isVibrant={true} density={0.9} />

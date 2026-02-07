@@ -1,4 +1,3 @@
-import { HeroSectionProjects } from '@/components/sections/hero-projects';
 import { ProjectsSection } from '@/components/sections/projects';
 import { notFound } from 'next/navigation';
 
@@ -11,7 +10,6 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <HeroSectionProjects />
       <ProjectsSection />
     </>
   );

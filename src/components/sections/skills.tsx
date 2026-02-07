@@ -5,8 +5,8 @@ import { Code, Database, Wrench, Rocket, Users, Network, Terminal } from 'lucide
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { MatrixAnimation } from '@/components/matrix-animation';
 
-// Helper component for scrambling text on visibility
-function ScrambleText({ text, delay = 0, isVisible }: { text: string; delay?: number; isVisible: boolean }) {
+// Helper component for scrambling text on visibility - FASTER for titles
+function ScrambleText({ text, delay = 0, isVisible, step = 1 }: { text: string; delay?: number; isVisible: boolean; step?: number }) {
   const [displayText, setDisplayText] = useState(text);
   const chars = "01田由甲申电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐";
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -26,9 +26,9 @@ function ScrambleText({ text, delay = 0, isVisible }: { text: string; delay?: nu
       if (iteration >= text.length) {
         if (intervalRef.current) clearInterval(intervalRef.current);
       }
-      iteration += 1 / 3;
+      iteration += step;
     }, 30);
-  }, [text]);
+  }, [text, step]);
 
   useEffect(() => {
     if (isVisible) {
@@ -119,7 +119,7 @@ export function SkillsSection() {
   return (
     <section ref={sectionRef} id="habilidades" className="min-h-screen w-full flex flex-col items-center justify-center bg-black relative overflow-hidden font-sans border-t border-green-500/5">
       {/* background Matrix rain - SEGMENTED variant for System Diagnostic ID */}
-      <div className="absolute inset-0 opacity-15 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)' }}>
+      <div className="absolute inset-0 opacity-15 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 95%, transparent)' }}>
         <MatrixAnimation color="#0F0" fontSize={16} speed={45} isVibrant={true} density={0.98} variant="segmented" />
       </div>
 
@@ -130,12 +130,12 @@ export function SkillsSection() {
             <div className={`flex items-center justify-center gap-3 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <Terminal className="text-green-500 animate-pulse" size={20} />
               <span className="text-green-500 font-mono text-xs uppercase tracking-[0.4em] font-bold">
-                <ScrambleText text="CAPABILITIES_DIAGNOSTIC" isVisible={isVisible} delay={400} />
+                <ScrambleText text="CAPABILITIES_DIAGNOSTIC" isVisible={isVisible} delay={400} step={1} />
               </span>
             </div>
 
             <h2 className="font-headline text-4xl font-black tracking-tighter sm:text-5xl lg:text-6xl text-white uppercase italic">
-              <ScrambleText text="Mi Stack Tecnológico" isVisible={isVisible} delay={800} />
+              <ScrambleText text="Mi Stack Tecnológico" isVisible={isVisible} delay={800} step={1} />
             </h2>
 
             <div className={`flex items-center justify-center gap-4 transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ transitionDelay: '1.2s' }}>
@@ -211,6 +211,15 @@ export function SkillsSection() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+      {/* Section Bridge - Technical Handover Divider */}
+      <div className="absolute bottom-0 left-0 w-full z-30 pointer-events-none pb-0 px-6 md:px-12 flex items-end justify-between overflow-hidden">
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+
+        {/* Central Data Stream Line */}
+        <div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-t from-green-500/50 to-transparent overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-green-400 animate-scan-slow"></div>
         </div>
       </div>
     </section>

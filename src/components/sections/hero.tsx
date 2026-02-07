@@ -1,59 +1,43 @@
 "use client";
 
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Briefcase } from 'lucide-react';
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { MatrixAnimation } from '@/components/matrix-animation';
-
-// Helper component for scrambling text on visibility/hover
-function ScrambleText({ text, delay = 0, isVisible, triggerOnHover = false }: { text: string; delay?: number; isVisible: boolean; triggerOnHover?: boolean }) {
-  const [displayText, setDisplayText] = useState(text);
-  const chars = "01田由甲申电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐";
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const startScramble = useCallback(() => {
-    let iteration = 0;
-    if (intervalRef.current) clearInterval(intervalRef.current);
-
-    intervalRef.current = setInterval(() => {
-      setDisplayText(
-        text.split("").map((char, index) => {
-          if (index < iteration) return text[index];
-          return chars[Math.floor(Math.random() * chars.length)];
-        }).join("")
-      );
-
-      if (iteration >= text.length) {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-      }
-      iteration += 1 / 3;
-    }, 30);
-  }, [text]);
-
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(startScramble, delay);
-      return () => {
-        clearTimeout(timer);
-        if (intervalRef.current) clearInterval(intervalRef.current);
-      };
-    }
-  }, [isVisible, startScramble, delay]);
-
-  return (
-    <span onMouseEnter={triggerOnHover ? startScramble : undefined}>
-      {displayText}
-    </span>
-  );
-}
+import { ScrambleText } from '@/components/scramble-text';
 
 export function HeroSection() {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const showProjects = process.env.NEXT_PUBLIC_SHOW_PROJECTS === 'true';
 
   useEffect(() => {
     setIsVisible(true);
+  }, []);
+
+  const handleProjectsNavigation = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+
+    // Dispatch global surge transition
+    window.dispatchEvent(new CustomEvent('dispatch-transition', {
+      detail: { variant: 'surge' }
+    }));
+
+    // Scroll to projects after surge peaks
+    setTimeout(() => {
+      const projectsSection = document.getElementById('proyectos');
+      if (projectsSection) {
+        const offset = 96;
+        const elementPosition = projectsSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 1000);
   }, []);
 
   const handleEstablishConnection = useCallback((e: React.MouseEvent) => {
@@ -81,7 +65,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="home" className="relative w-full h-screen flex items-center justify-center text-center overflow-hidden bg-black font-sans">
+    <section id="home" className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center text-center overflow-hidden bg-black font-sans py-12 pt-28 sm:pt-32">
 
       {/* background Matrix - Vibrant */}
       <div className="absolute inset-0 opacity-80" style={{ maskImage: 'linear-gradient(to bottom, black 85%, transparent)' }}>
@@ -100,8 +84,8 @@ export function HeroSection() {
       {/* Gradiente radial para viñeta global */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.85)_100%)] z-[2]" aria-hidden="true" />
 
-      <div className="relative z-10 container px-4 md:px-6">
-        <div className={`relative max-w-4xl mx-auto py-8 px-4 sm:py-12 sm:px-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+      <div className="relative z-10 container px-4 md:px-6 w-full max-w-[95vw] lg:max-w-7xl flex flex-col items-center justify-center flex-grow">
+        <div className={`relative w-full max-w-lg sm:max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto py-8 px-4 sm:py-12 sm:px-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
 
           {/* Central Content Card with Integrated Matrix - HUD Style */}
           <div className="absolute inset-0 bg-black/40 backdrop-blur-3xl rounded-sm border border-green-500/10 shadow-[0_0_80px_rgba(0,0,0,0.9)] overflow-hidden">
@@ -130,7 +114,7 @@ export function HeroSection() {
           </div>
 
           {/* Content */}
-          <div className="relative z-20 space-y-6 sm:space-y-8">
+          <div className="relative z-20 flex flex-col gap-6 sm:gap-8 lg:gap-10">
             <div className="space-y-4">
               {/* Identity HUD Block */}
               <div className="relative inline-block mx-auto pb-10 sm:pb-14">
@@ -144,15 +128,15 @@ export function HeroSection() {
                 </div>
 
                 {/* Glitch Typography */}
-                <h1 className="relative font-headline text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_0_25px_rgba(0,255,0,0.15)] leading-tight italic uppercase group px-4">
-                  <span className="relative z-10 block">
+                <h1 className="relative font-headline text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_0_25px_rgba(0,255,0,0.15)] leading-tight italic uppercase group px-2 sm:px-4">
+                  <span className="relative z-10 block break-words">
                     <ScrambleText text="Ignacio Gallardo Sánchez" isVisible={isVisible} delay={400} />
                   </span>
                   {/* Persistent Glitch Layers */}
-                  <span className="absolute inset-0 z-0 text-red-500/30 translate-x-[2px] -translate-y-[1px] opacity-0 group-hover:opacity-100 animate-glitch-fast pointer-events-none select-none px-4">
+                  <span className="absolute inset-0 z-0 text-red-500/30 translate-x-[2px] -translate-y-[1px] opacity-0 group-hover:opacity-100 animate-glitch-fast pointer-events-none select-none px-4 hidden sm:block">
                     Ignacio Gallardo Sánchez
                   </span>
-                  <span className="absolute inset-0 z-0 text-cyan-500/30 -translate-x-[2px] translate-y-[1px] opacity-0 group-hover:opacity-100 animate-glitch-slow pointer-events-none select-none px-4">
+                  <span className="absolute inset-0 z-0 text-cyan-500/30 -translate-x-[2px] translate-y-[1px] opacity-0 group-hover:opacity-100 animate-glitch-slow pointer-events-none select-none px-4 hidden sm:block">
                     Ignacio Gallardo Sánchez
                   </span>
                 </h1>
@@ -171,13 +155,13 @@ export function HeroSection() {
                 </div>
               </div>
 
-              <div className="relative h-1 w-32 sm:w-48 mx-auto overflow-hidden mt-4 sm:mt-6">
+              <div className="relative h-1 w-24 sm:w-48 mx-auto overflow-hidden mt-4 sm:mt-6">
                 <div className="absolute inset-0 bg-green-500/20"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400 to-transparent animate-shimmer"></div>
               </div>
             </div>
 
-            <p className="relative z-10 text-base sm:text-lg text-green-100/90 md:text-xl max-w-xl mx-auto leading-relaxed font-mono tracking-tight">
+            <p className="relative z-10 text-sm sm:text-lg text-green-100/90 md:text-xl max-w-xl mx-auto leading-relaxed font-mono tracking-tight px-4">
               <span className="inline-block animate-slide-up font-medium" style={{ animationDelay: '0.3s' }}>
                 {">"} // CERTIFIED JAVA DEVELOPER
               </span>
@@ -187,38 +171,36 @@ export function HeroSection() {
               </span>
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 pt-4 sm:pt-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 pt-4 sm:pt-8 w-full max-w-md mx-auto sm:max-w-none">
               {showProjects && (
                 <Button
-                  asChild
+                  onClick={handleProjectsNavigation}
                   size="lg"
-                  className="relative h-16 px-10 bg-black/60 text-green-500 border border-green-500/20 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-500 animate-slide-up group overflow-hidden rounded-none shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                  className="relative w-full sm:w-auto h-14 sm:h-16 px-6 sm:px-10 bg-black/60 text-green-500 border border-green-500/20 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-500 animate-slide-up group overflow-hidden rounded-none shadow-[0_0_20px_rgba(0,0,0,0.5)]"
                   style={{ animationDelay: '0.9s' }}
                 >
-                  <Link href="/proyectos" className="flex items-center">
-                    <Briefcase className="mr-3 h-5 w-5 relative z-10" />
-                    <span className="font-mono font-bold tracking-[0.2em] relative z-10">
-                      <ScrambleText text="PROJECTS.EXE" isVisible={isVisible} delay={1200} triggerOnHover={true} />
-                    </span>
+                  <span className="flex items-center justify-center relative z-10 font-mono font-bold tracking-[0.2em] text-xs sm:text-sm">
+                    <Briefcase className="mr-3 h-4 w-4 sm:h-5 sm:w-5 relative z-10" />
+                    <ScrambleText text="PROJECTS.EXE" isVisible={isVisible} delay={1200} triggerOnHover={true} />
+                  </span>
 
-                    {/* Button HUD Corners */}
-                    <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
-                    <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
+                  {/* Button HUD Corners */}
+                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
+                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
 
-                    {/* Internal Scanline Pulse */}
-                    <div className="absolute inset-x-0 h-[100%] w-[1px] bg-green-400/10 left-0 opacity-0 group-hover:opacity-100 group-hover:animate-scan-slow pointer-events-none"></div>
-                  </Link>
+                  {/* Internal Scanline Pulse */}
+                  <div className="absolute inset-x-0 h-[100%] w-[1px] bg-green-400/10 left-0 opacity-0 group-hover:opacity-100 group-hover:animate-scan-slow pointer-events-none"></div>
                 </Button>
               )}
               <Button
                 onClick={handleEstablishConnection}
                 size="lg"
-                className="relative h-16 px-10 bg-black/60 text-green-500 border border-green-500/20 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-500 animate-slide-up group overflow-hidden rounded-none shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                className="relative w-full sm:w-auto h-14 sm:h-16 px-6 sm:px-10 bg-black/60 text-green-500 border border-green-500/20 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-500 animate-slide-up group overflow-hidden rounded-none shadow-[0_0_20px_rgba(0,0,0,0.5)]"
                 style={{ animationDelay: showProjects ? '1.2s' : '0.9s' }}
               >
-                <span className="flex items-center relative z-10 font-mono font-bold tracking-[0.2em]">
+                <span className="flex items-center justify-center relative z-10 font-mono font-bold tracking-[0.2em] text-xs sm:text-sm">
                   <ScrambleText text="ESTABLISH_CONNECTION" isVisible={isVisible} delay={1400} triggerOnHover={true} />
-                  <ArrowRight className="ml-4 h-5 w-5 transition-transform group-hover:translate-x-2" />
+                  <ArrowRight className="ml-4 h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-2" />
                 </span>
 
                 {/* Button HUD Corners */}

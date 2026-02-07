@@ -6,8 +6,8 @@ import { Award, Code, Users, Target, Terminal } from 'lucide-react';
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { MatrixAnimation } from '@/components/matrix-animation';
 
-// Helper component for scrambling text on visibility
-function ScrambleText({ text, delay = 0, isVisible }: { text: string; delay?: number; isVisible: boolean }) {
+// Helper component for scrambling text on visibility - FASTER for titles
+function ScrambleText({ text, delay = 0, isVisible, step = 1 }: { text: string; delay?: number; isVisible: boolean; step?: number }) {
   const [displayText, setDisplayText] = useState(text);
   const chars = "01田由甲申电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐";
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -27,9 +27,9 @@ function ScrambleText({ text, delay = 0, isVisible }: { text: string; delay?: nu
       if (iteration >= text.length) {
         if (intervalRef.current) clearInterval(intervalRef.current);
       }
-      iteration += 1 / 3;
+      iteration += step;
     }, 30);
-  }, [text]);
+  }, [text, step]);
 
   useEffect(() => {
     if (isVisible) {
@@ -44,24 +44,7 @@ function ScrambleText({ text, delay = 0, isVisible }: { text: string; delay?: nu
   return <span>{displayText}</span>;
 }
 
-// Technical HUD container helper
-function HUDCard({ children, className = "", style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
-  return (
-    <div
-      className={`relative bg-black/40 backdrop-blur-md border border-green-500/20 p-6 group transition-all duration-500 hover:border-green-500/40 shadow-[0_0_20px_rgba(0,0,0,0.5)] ${className}`}
-      style={style}
-    >
-      {/* HUD Corners */}
-      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
-      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-green-500/40 group-hover:border-green-500 transition-all"></div>
-
-      {/* Internal Scanline Pulse - PERSISTENT */}
-      <div className="absolute inset-x-0 h-[100%] w-[1px] bg-green-400/5 left-0 animate-scan-slow pointer-events-none opacity-40"></div>
-
-      {children}
-    </div>
-  );
-}
+import { HUDCard } from '@/components/ui/hud-card';
 
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -151,11 +134,11 @@ export function AboutSection() {
             <div className="flex items-center gap-3 mb-4">
               <Terminal className="text-green-500 animate-pulse" size={18} />
               <span className="text-green-500 font-mono text-sm uppercase tracking-[0.3em] font-bold">
-                <ScrambleText text="SYSTEM_STATUS: ACTIVE" isVisible={isVisible} delay={400} />
+                <ScrambleText text="SYSTEM_STATUS: ACTIVE" isVisible={isVisible} delay={400} step={1} />
               </span>
             </div>
             <h2 className="font-headline text-4xl font-black tracking-tighter sm:text-5xl lg:text-6xl text-white uppercase italic">
-              <ScrambleText text="Desarrollador y Especialista Java" isVisible={isVisible} delay={800} />
+              <ScrambleText text="Desarrollador y Especialista Java" isVisible={isVisible} delay={800} step={1} />
             </h2>
           </div>
 
@@ -307,7 +290,7 @@ export function AboutSection() {
                         {verificationProgress === 100 ? (
                           <>
                             <Award size={14} className="animate-pulse text-green-400" />
-                            <span className="text-green-400">OFICIALMENTE_CERTIFICADO_OK</span>
+                            <span className="text-green-400">CREDENCIAL_VERIFICADA</span>
                           </>
                         ) : (
                           <>
