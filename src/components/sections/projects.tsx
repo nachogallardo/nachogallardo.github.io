@@ -20,12 +20,12 @@ const projects = [
     links: [
       {
         label: "WEB APP",
-        url: "https://gascompare.netlify.app/",
+        url: process.env.NEXT_PUBLIC_GASCOMPARE_WEB_URL || "https://gascompare.netlify.app/",
         icon: Globe
       },
       {
         label: "GOOGLE PLAY",
-        url: "https://play.google.com/store/apps/details?id=com.gasfinder.app",
+        url: process.env.NEXT_PUBLIC_GASCOMPARE_PLAY_URL || "https://play.google.com/store/apps/details?id=com.gasfinder.app",
         icon: Smartphone
       }
     ],
@@ -41,6 +41,7 @@ const projects = [
 export function ProjectsSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const webAppUrl = process.env.NEXT_PUBLIC_GASCOMPARE_WEB_URL || "https://gascompare.netlify.app/";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -156,7 +157,7 @@ export function ProjectsSection() {
                     {/* Project Image HUD Frame */}
                     {project.image && (
                       <div className="relative h-56 w-full overflow-hidden border-b border-green-500/10">
-                        <Link href="https://gascompare.netlify.app/" target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer">
+                        <Link href={webAppUrl} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer">
                           <Image
                             src={project.image.imageUrl}
                             alt={project.title}
