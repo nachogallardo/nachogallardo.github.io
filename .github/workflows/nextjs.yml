@@ -75,9 +75,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         env:
-          NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ vars.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY }}
-          NEXT_PUBLIC_GASCOMPARE_WEB_URL: ${{ vars.NEXT_PUBLIC_GASCOMPARE_WEB_URL }}
-          NEXT_PUBLIC_GASCOMPARE_PLAY_URL: ${{ vars.NEXT_PUBLIC_GASCOMPARE_PLAY_URL }}
+          NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ vars.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY}}
+          NEXT_PUBLIC_GASCOMPARE_WEB_URL: ${{ vars.NEXT_PUBLIC_GASCOMPARE_WEB_URL}}
+          NEXT_PUBLIC_GASCOMPARE_PLAY_URL: ${{ vars.NEXT_PUBLIC_GASCOMPARE_PLAY_URL}}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
