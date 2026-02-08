@@ -53,8 +53,6 @@ El formulario de contacto utiliza **hCaptcha** para protección anti-spam:
 
 ```bash
 # .env.local
-NEXT_PUBLIC_SHOW_PROJECTS=true
-NEXT_PUBLIC_HCAPTCHA_SITE_KEY=tu_clave_de_hcaptcha
 NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=tu_clave_de_web3forms
 ```
 
