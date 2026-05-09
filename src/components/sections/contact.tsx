@@ -265,7 +265,7 @@ export function ContactSection() {
                         type="text"
                         required
                         placeholder="Tu nombre completo"
-                        className="bg-black/40 border-green-500/20 focus:border-green-500/50 text-green-100 font-mono placeholder:text-green-900/50 rounded-none h-12 transition-all focus:ring-0 focus-visible:ring-0"
+                        className="bg-black/40 border-green-500/20 focus:border-green-500/50 text-green-100 font-mono placeholder:text-green-500/40 rounded-none h-12 transition-all focus:ring-0 focus-visible:ring-0"
                       />
                     </div>
 
@@ -277,7 +277,7 @@ export function ContactSection() {
                         type="email"
                         required
                         placeholder="tu@email.com"
-                        className="bg-black/40 border-green-500/20 focus:border-green-500/50 text-green-100 font-mono placeholder:text-green-900/50 rounded-none h-12 transition-all focus:ring-0 focus-visible:ring-0"
+                        className="bg-black/40 border-green-500/20 focus:border-green-500/50 text-green-100 font-mono placeholder:text-green-500/40 rounded-none h-12 transition-all focus:ring-0 focus-visible:ring-0"
                       />
                     </div>
                   </div>
@@ -289,7 +289,7 @@ export function ContactSection() {
                       name="subject"
                       type="text"
                       placeholder="¿En qué puedo ayudarte?"
-                      className="bg-black/40 border-green-500/20 focus:border-green-500/50 text-green-100 font-mono placeholder:text-green-900/50 rounded-none h-12 transition-all focus:ring-0 focus-visible:ring-0"
+                      className="bg-black/40 border-green-500/20 focus:border-green-500/50 text-green-100 font-mono placeholder:text-green-500/40 rounded-none h-12 transition-all focus:ring-0 focus-visible:ring-0"
                     />
                   </div>
 
@@ -301,7 +301,7 @@ export function ContactSection() {
                       required
                       placeholder="Cuéntame sobre tu proyecto..."
                       rows={4}
-                      className="bg-black/40 border-green-500/20 focus:border-green-500/50 text-green-100 font-mono placeholder:text-green-900/50 rounded-none resize-none transition-all focus:ring-0 focus-visible:ring-0 md:rows-6"
+                      className="bg-black/40 border-green-500/20 focus:border-green-500/50 text-green-100 font-mono placeholder:text-green-500/40 rounded-none resize-none transition-all focus:ring-0 focus-visible:ring-0 md:rows-6"
                     />
                   </div>
 

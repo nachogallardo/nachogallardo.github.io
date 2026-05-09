@@ -58,7 +58,7 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[11px] font-mono text-green-500/40 uppercase tracking-widest text-center md:text-left">
-            &copy; {currentYear} Ignacio Gallardo Sánchez // <span className="text-green-500/20 italic">Desarrollo de Sistemas Java y HUD Interfaces</span>
+            &copy; {currentYear} Ignacio Gallardo Sánchez // <span className="text-green-500/60 italic">Desarrollo de Sistemas Java y HUD Interfaces</span>
           </p>
           <div className="flex gap-4">
             <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-green-500/20 to-transparent"></div>
