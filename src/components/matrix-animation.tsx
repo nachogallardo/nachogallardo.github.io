@@ -79,6 +79,11 @@ export const MatrixAnimation: React.FC<MatrixAnimationProps> = ({
 
             ctx.font = `${fontSize}px monospace`;
 
+            const glowingChars: {x: number, yPos: number, character: string}[] = [];
+
+            ctx.fillStyle = color;
+            ctx.shadowBlur = 0;
+
             columns.forEach((yPos, xIndex) => {
                 const character = chars[Math.floor(Math.random() * chars.length)];
                 const x = xIndex * fontSize;
@@ -86,18 +91,10 @@ export const MatrixAnimation: React.FC<MatrixAnimationProps> = ({
                 // Draw the character
                 // Head of the column is glowing
                 if (Math.random() > 0.98) {
-                    ctx.fillStyle = glowColor;
-                    if (isVibrant) {
-                        ctx.shadowBlur = 10;
-                        ctx.shadowColor = color;
-                    }
+                    glowingChars.push({x, yPos, character});
                 } else {
-                    ctx.fillStyle = color;
-                    ctx.shadowBlur = 0;
+                    ctx.fillText(character, x, yPos);
                 }
-
-                ctx.fillText(character, x, yPos);
-                ctx.shadowBlur = 0;
 
                 // Move down logic
                 if (variant === "segmented") {
@@ -124,6 +121,20 @@ export const MatrixAnimation: React.FC<MatrixAnimationProps> = ({
                     }
                 }
             });
+
+            if (glowingChars.length > 0) {
+                ctx.fillStyle = glowColor;
+                if (isVibrant) {
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = color;
+                }
+                glowingChars.forEach(gc => {
+                    ctx.fillText(gc.character, gc.x, gc.yPos);
+                });
+                if (isVibrant) {
+                    ctx.shadowBlur = 0; // Reset
+                }
+            }
         };
 
         // Use ResizeObserver for robust layout tracking
@@ -143,15 +154,35 @@ export const MatrixAnimation: React.FC<MatrixAnimationProps> = ({
             }
         });
 
+        let isVisible = true;
+        const intersectionObserver = new IntersectionObserver((entries) => {
+            for (const entry of entries) {
+                isVisible = entry.isIntersecting;
+            }
+        }, { rootMargin: "100px" });
+
         if (canvas.parentElement) {
             resizeObserver.observe(canvas.parentElement);
+            intersectionObserver.observe(canvas.parentElement);
         }
 
-        const interval = setInterval(step, speed);
+        let animationFrameId: number;
+        let lastTime = 0;
+
+        const loop = (time: number) => {
+            animationFrameId = requestAnimationFrame(loop);
+            if (isVisible && time - lastTime >= speed) {
+                lastTime = time;
+                step();
+            }
+        };
+
+        animationFrameId = requestAnimationFrame(loop);
 
         return () => {
-            clearInterval(interval);
+            cancelAnimationFrame(animationFrameId);
             resizeObserver.disconnect();
+            intersectionObserver.disconnect();
         };
     }, [color, fontSize, speed, density, glowColor, isVibrant, variant]);
 
@@ -162,3 +193,4 @@ export const MatrixAnimation: React.FC<MatrixAnimationProps> = ({
         />
     );
 };
+
