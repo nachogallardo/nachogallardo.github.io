@@ -1,0 +1,416 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body {
+      margin: 0;
+      background: #FAF9F7;
+      font-family: 'Inter Tight', -apple-system, 'Segoe UI', sans-serif;
+      color: #1C1B19;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #1F3A5F; text-decoration: none; }
+    a:hover { color: #162943; }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; background: #FAF9F7;">
+
+  <!-- ============ NAV ============ -->
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 28px 100px; border-bottom: 1px solid #E3E0DA;">
+    <div style="display: flex; flex-direction: column; gap: 2px;">
+      <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; color: #1C1B19;">Ignacio Gallardo Sánchez</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #6E6A63; text-transform: uppercase;">Desarrollador Java</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 36px;">
+      <a href="#sobre-mi" style="font-size: 14.5px; color: #45423C;">Sobre mí</a>
+      <a href="#experiencia" style="font-size: 14.5px; color: #45423C;">Stack</a>
+      <a href="#proyectos" style="font-size: 14.5px; color: #45423C;">Proyectos</a>
+      <a href="#contacto" style="font-size: 14.5px; color: #45423C;">Contacto</a>
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <a href="https://github.com/nachogallardo" aria-label="GitHub" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: #6E6A63; border-radius: 2px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/ignaciogallardosanchez/" aria-label="LinkedIn" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: #6E6A63; border-radius: 2px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <div style="padding: 104px 100px 88px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 88px; align-items: start;">
+    <div style="display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: #2F7D4F; display: inline-block;"></span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #4A6B57;">Disponible para nuevas oportunidades</span>
+      </div>
+
+      <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 74px; line-height: 1.04; font-weight: 400; letter-spacing: -0.025em; color: #14130F; text-wrap: pretty;">
+        Backend en Java,<br>construido para durar.
+      </h1>
+
+      <p style="margin: 0; max-width: 620px; font-size: 20px; line-height: 1.6; color: #45423C; text-wrap: pretty;">
+        Soy Ignacio Gallardo, desarrollador certificado por Oracle en Java SE 11. Diseño y mantengo servicios backend con Spring Boot, APIs REST y arquitecturas de microservicios — con foco en código limpio, pruebas y sistemas que otro equipo pueda mantener sin dolor.
+      </p>
+
+      <div style="display: flex; align-items: center; gap: 16px; padding-top: 8px;">
+        <a href="#proyectos" style="display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 30px; background: #1F3A5F; color: #FAF9F7; font-size: 15.5px; font-weight: 500; border-radius: 2px;">
+          Ver proyectos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#contacto" style="display: inline-flex; align-items: center; height: 52px; padding: 0 30px; border: 1px solid #C9C4BA; color: #1C1B19; font-size: 15.5px; font-weight: 500; border-radius: 2px;">
+          Hablemos
+        </a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 28px; padding-top: 20px; border-top: 1px solid #E3E0DA; margin-top: 16px;">
+        <div style="display: flex; align-items: center; gap: 9px; font-size: 14.5px; color: #6E6A63;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Sevilla, España
+        </div>
+        <div style="display: flex; align-items: center; gap: 9px; font-size: 14.5px; color: #6E6A63;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Respuesta en menos de 24 h
+        </div>
+        <div style="display: flex; align-items: center; gap: 9px; font-size: 14.5px; color: #6E6A63;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          Español · Inglés básico
+        </div>
+      </div>
+    </div>
+
+    <!-- Certification card -->
+    <div style="border: 1px solid #E3E0DA; background: #FFFFFF; padding: 36px 34px; display: flex; flex-direction: column; gap: 24px; border-radius: 2px;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A857C;">Certificación</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #2F7D4F;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Verificada
+        </span>
+      </div>
+
+      <div style="display: flex; justify-content: center; padding: 10px 0 4px;">
+        <img src="oracle-badge.svg" alt="Insignia Oracle Certified Professional Java SE 11 Developer" style="width: 150px; height: auto; display: block;">
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 7px; text-align: center;">
+        <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 23px; font-weight: 600; letter-spacing: -0.015em; color: #14130F; line-height: 1.25;">Oracle Certified Professional</div>
+        <div style="font-size: 15px; color: #45423C;">Java SE 11 Developer</div>
+      </div>
+
+      <div style="height: 1px; background: #E3E0DA;"></div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13.5px;">
+          <span style="color: #8A857C;">Emitida por</span>
+          <span style="color: #1C1B19;">Oracle Corporation</span>
+        </div>
+      </div>
+
+      <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=BC4DDBEE397067D0DCC3895F5B3F8015C76D94F423C84C74B73DBB016D0AE199" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border: 1px solid #C9C4BA; color: #1F3A5F; font-size: 14px; font-weight: 500; border-radius: 2px;">
+        Verificar en Oracle
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ============ SOBRE MÍ ============ -->
+  <div id="sobre-mi" style="padding: 88px 100px; border-top: 1px solid #E3E0DA; background: #FFFFFF;">
+    <div style="display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 72px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A857C;">01 — Perfil</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 46px;">
+        <h2 style="margin: 0; max-width: 860px; font-family: 'Source Serif 4', Georgia, serif; font-size: 34px; line-height: 1.42; font-weight: 400; letter-spacing: -0.015em; color: #14130F; text-wrap: pretty;">
+          Apasionado por la tecnología, con gran capacidad de aprendizaje, trabajo en equipo y adaptabilidad. Busco seguir creciendo profesionalmente en Java y ampliar mis conocimientos técnicos.
+        </h2>
+
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; padding-top: 8px;">
+          <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 22px; border-top: 2px solid #14130F;">
+            <div style="font-size: 17px; font-weight: 600; color: #14130F;">Desarrollo Java</div>
+            <div style="font-size: 15px; line-height: 1.6; color: #6E6A63;">Java SE y frameworks modernos del ecosistema: Spring Boot, JPA/Hibernate y Jakarta EE.</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 22px; border-top: 2px solid #14130F;">
+            <div style="font-size: 17px; font-weight: 600; color: #14130F;">Trabajo en equipo</div>
+            <div style="font-size: 15px; line-height: 1.6; color: #6E6A63;">Experiencia colaborativa en metodologías ágiles, con Scrum y revisión de código como práctica diaria.</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 22px; border-top: 2px solid #14130F;">
+            <div style="font-size: 17px; font-weight: 600; color: #14130F;">Orientado a resultados</div>
+            <div style="font-size: 15px; line-height: 1.6; color: #6E6A63;">Soluciones eficientes y escalables, apoyadas en pruebas, SOLID y principios de código limpio.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STACK ============ -->
+  <div id="experiencia" style="padding: 88px 100px; border-top: 1px solid #E3E0DA;">
+    <div style="display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 72px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A857C;">02 — Stack</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 52px;">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 46px; line-height: 1.12; font-weight: 400; letter-spacing: -0.02em; color: #14130F;">Tecnologías con las que trabajo</h2>
+          <p style="margin: 0; max-width: 640px; font-size: 17px; line-height: 1.6; color: #6E6A63;">Herramientas que uso a diario en backend, datos y despliegue.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0;">
+
+          <div style="display: flex; flex-direction: column; gap: 16px; padding: 30px 44px 30px 0; border-top: 1px solid #E3E0DA;">
+            <div style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #B4AFA5;">01</span>
+              <span style="font-size: 17px; font-weight: 600; color: #14130F;">Lenguajes</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Java</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">C#</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">JavaScript</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">TypeScript</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">HTML / CSS</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">SQL</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; padding: 30px 0 30px 44px; border-top: 1px solid #E3E0DA; border-left: 1px solid #E3E0DA;">
+            <div style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #B4AFA5;">02</span>
+              <span style="font-size: 17px; font-weight: 600; color: #14130F;">Frameworks</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Spring Boot</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">JPA / Hibernate</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Jakarta EE</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">React</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Next.js</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Tailwind CSS</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Bootstrap</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; padding: 30px 44px 30px 0; border-top: 1px solid #E3E0DA;">
+            <div style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #B4AFA5;">03</span>
+              <span style="font-size: 17px; font-weight: 600; color: #14130F;">Bases de datos</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">MySQL</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Oracle</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">PostgreSQL</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">DB2</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">MongoDB</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; padding: 30px 0 30px 44px; border-top: 1px solid #E3E0DA; border-left: 1px solid #E3E0DA;">
+            <div style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #B4AFA5;">04</span>
+              <span style="font-size: 17px; font-weight: 600; color: #14130F;">DevOps y calidad</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Docker</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Maven</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Git</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Jenkins</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">CI/CD</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">JUnit</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">SonarQube</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; padding: 30px 44px 30px 0; border-top: 1px solid #E3E0DA; border-bottom: 1px solid #E3E0DA;">
+            <div style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #B4AFA5;">05</span>
+              <span style="font-size: 17px; font-weight: 600; color: #14130F;">Servicios y seguridad</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">REST API</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Microservicios</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Web Services</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">OAuth2</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Spring Security</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; padding: 30px 0 30px 44px; border-top: 1px solid #E3E0DA; border-bottom: 1px solid #E3E0DA; border-left: 1px solid #E3E0DA;">
+            <div style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #B4AFA5;">06</span>
+              <span style="font-size: 17px; font-weight: 600; color: #14130F;">Metodologías</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Agile</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Scrum</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">TDD</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">Clean Code</span>
+              <span style="padding: 6px 13px; border: 1px solid #DDD9D2; background: #FFFFFF; font-size: 13.5px; color: #45423C; border-radius: 2px;">SOLID</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PROYECTOS ============ -->
+  <div id="proyectos" style="padding: 88px 100px; border-top: 1px solid #E3E0DA; background: #FFFFFF;">
+    <div style="display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 72px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A857C;">03 — Proyectos</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 48px;">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 46px; line-height: 1.12; font-weight: 400; letter-spacing: -0.02em; color: #14130F;">Trabajo seleccionado</h2>
+          <p style="margin: 0; max-width: 640px; font-size: 17px; line-height: 1.6; color: #6E6A63;">Producto propio, publicado y en uso.</p>
+        </div>
+
+        <!-- Project: GasCompare -->
+        <div style="display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 56px; padding: 44px; border: 1px solid #E3E0DA; border-radius: 2px; align-items: center;">
+          <div style="display: flex; align-items: center; justify-content: center; height: 260px; background: #F4F2EE; border-radius: 2px;">
+            <img src="gascompare-icon.png" alt="GasCompare" style="width: 116px; height: 116px; display: block; border-radius: 22px;">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 22px;">
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A857C;">Aplicación Android</span>
+              <span style="width: 4px; height: 4px; border-radius: 50%; background: #C9C4BA;"></span>
+              <span style="display: inline-flex; align-items: center; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #2F7D4F;">
+                <span style="width: 6px; height: 6px; border-radius: 50%; background: #2F7D4F; display: inline-block;"></span>
+                En Google Play
+              </span>
+            </div>
+
+            <h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 36px; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em; color: #14130F;">GasCompare</h3>
+
+            <p style="margin: 0; max-width: 680px; font-size: 16.5px; line-height: 1.65; color: #45423C; text-wrap: pretty;">
+              Aplicación Android para consultar y comparar precios de combustible en tiempo real en toda España. Integra geolocalización y filtrado inteligente para que el usuario encuentre la gasolinera más barata cerca, con datos actualizados al instante.
+            </p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 6px 13px; background: #F4F2EE; font-size: 13.5px; color: #45423C; border-radius: 2px;">Android</span>
+              <span style="padding: 6px 13px; background: #F4F2EE; font-size: 13.5px; color: #45423C; border-radius: 2px;">Geolocalización</span>
+              <span style="padding: 6px 13px; background: #F4F2EE; font-size: 13.5px; color: #45423C; border-radius: 2px;">API REST</span>
+              <span style="padding: 6px 13px; background: #F4F2EE; font-size: 13.5px; color: #45423C; border-radius: 2px;">Datos en tiempo real</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 14px; padding-top: 6px;">
+              <a href="https://play.google.com/store/apps/details?id=com.gasfinder.app" style="display: inline-flex; align-items: center; gap: 9px; height: 46px; padding: 0 24px; background: #1F3A5F; color: #FAF9F7; font-size: 14.5px; font-weight: 500; border-radius: 2px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+                Google Play
+              </a>
+              <a href="https://gascompare.netlify.app/" style="display: inline-flex; align-items: center; gap: 9px; height: 46px; padding: 0 24px; border: 1px solid #C9C4BA; color: #1C1B19; font-size: 14.5px; font-weight: 500; border-radius: 2px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                Versión web
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 26px 30px; border: 1px dashed #D6D1C9; border-radius: 2px;">
+          <span style="font-size: 15.5px; color: #6E6A63;">Más trabajo, incluido código y experimentos, en mi GitHub.</span>
+          <a href="https://github.com/nachogallardo" style="display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; font-weight: 500; color: #1F3A5F;">
+            github.com/nachogallardo
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CONTACTO ============ -->
+  <div id="contacto" style="padding: 88px 100px 96px; border-top: 1px solid #E3E0DA;">
+    <div style="display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 72px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A857C;">04 — Contacto</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 28px;">
+          <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 46px; line-height: 1.12; font-weight: 400; letter-spacing: -0.02em; color: #14130F; text-wrap: pretty;">Hablemos de tu proyecto</h2>
+          <p style="margin: 0; font-size: 17.5px; line-height: 1.62; color: #45423C; text-wrap: pretty;">
+            Estoy abierto a posiciones de backend Java y a colaboraciones puntuales. Cuéntame qué necesitas y te respondo en menos de 24 horas.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 0; padding-top: 8px;">
+            <a href="mailto:nachogallardosanchez@gmail.com" style="display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-top: 1px solid #E3E0DA;">
+              <span style="display: flex; align-items: center; gap: 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6A63" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span style="font-size: 16px; color: #1C1B19;">nachogallardosanchez@gmail.com</span>
+              </span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A857C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/ignaciogallardosanchez/" style="display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-top: 1px solid #E3E0DA;">
+              <span style="display: flex; align-items: center; gap: 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6A63" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                <span style="font-size: 16px; color: #1C1B19;">linkedin.com/in/ignaciogallardosanchez</span>
+              </span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A857C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="https://github.com/nachogallardo" style="display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-top: 1px solid #E3E0DA; border-bottom: 1px solid #E3E0DA;">
+              <span style="display: flex; align-items: center; gap: 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6A63" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                <span style="font-size: 16px; color: #1C1B19;">github.com/nachogallardo</span>
+              </span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A857C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div style="padding: 40px; background: #FFFFFF; border: 1px solid #E3E0DA; border-radius: 2px; display: flex; flex-direction: column; gap: 22px;">
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px;">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="font-size: 13px; font-weight: 500; color: #45423C;">Nombre</label>
+              <div style="height: 46px; border: 1px solid #DDD9D2; background: #FCFBF9; border-radius: 2px; display: flex; align-items: center; padding: 0 14px; font-size: 15px; color: #A8A39A;">Tu nombre</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="font-size: 13px; font-weight: 500; color: #45423C;">Email</label>
+              <div style="height: 46px; border: 1px solid #DDD9D2; background: #FCFBF9; border-radius: 2px; display: flex; align-items: center; padding: 0 14px; font-size: 15px; color: #A8A39A;">tu@email.com</div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 13px; font-weight: 500; color: #45423C;">Asunto</label>
+            <div style="height: 46px; border: 1px solid #DDD9D2; background: #FCFBF9; border-radius: 2px; display: flex; align-items: center; padding: 0 14px; font-size: 15px; color: #A8A39A;">¿En qué puedo ayudarte?</div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 13px; font-weight: 500; color: #45423C;">Mensaje</label>
+            <div style="height: 128px; border: 1px solid #DDD9D2; background: #FCFBF9; border-radius: 2px; padding: 14px; font-size: 15px; color: #A8A39A;">Cuéntame sobre tu proyecto…</div>
+          </div>
+
+          <div style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 50px; background: #1F3A5F; color: #FAF9F7; font-size: 15.5px; font-weight: 500; border-radius: 2px;">
+            Enviar mensaje
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </div>
+
+          <div style="font-size: 12.5px; line-height: 1.5; color: #8A857C; text-align: center;">Tus datos se usan únicamente para responderte.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <div style="padding: 34px 100px; border-top: 1px solid #E3E0DA; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between;">
+    <span style="font-size: 13.5px; color: #8A857C;">© 2026 Ignacio Gallardo Sánchez</span>
+    <div style="display: flex; align-items: center; gap: 26px;">
+      <a href="https://github.com/nachogallardo" style="font-size: 13.5px; color: #6E6A63;">GitHub</a>
+      <a href="https://www.linkedin.com/in/ignaciogallardosanchez/" style="font-size: 13.5px; color: #6E6A63;">LinkedIn</a>
+      <a href="mailto:nachogallardosanchez@gmail.com" style="font-size: 13.5px; color: #6E6A63;">Email</a>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

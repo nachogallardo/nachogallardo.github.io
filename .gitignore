@@ -43,3 +43,9 @@ next-env.d.ts
 # firebase
 firebase-debug.log
 firestore-debug.log
+
+# local tooling
+/.claude/
+
+# lienzo de diseño generado (~2 MB, se regenera desde los .dc.html)
+/design/portfolio-ignacio-gallardo.html

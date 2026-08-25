@@ -1,0 +1,23 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 4300, "title": "Landing — escritorio", "print": "flow" },
+    { "file": "Mobile.dc.html", "x": 1600, "y": 0, "w": 390, "h": 3700, "title": "Landing — móvil", "print": "flow" }
+  ],
+  "annotations": [
+    {
+      "id": "direccion",
+      "x": 0,
+      "y": -230,
+      "w": 620,
+      "text": "Dirección: editorial sobrio.\n\nFondo hueso #FAF9F7, titulares en Source Serif 4, texto en Inter Tight, etiquetas en IBM Plex Mono. Un solo acento: azul tinta #1F3A5F. Verde solo como señal de estado (disponible / verificado).\n\nSin HUD, sin scanlines, sin glow, sin texto scrambleado. La jerarquía la llevan el tamaño del texto y las reglas de 1px."
+    },
+    {
+      "id": "pendientes",
+      "x": 1600,
+      "y": -230,
+      "w": 390,
+      "text": "Estado:\n\n· Implementado en el código Next.js — el sitio ya usa esta dirección.\n· El botón «Descargar CV» se ha retirado: no hay PDF todavía. En su lugar, GitHub y LinkedIn en la barra.\n· Los años de experiencia y el contador de proyectos del diseño anterior no se han incluido; dime los reales si quieres recuperarlos."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

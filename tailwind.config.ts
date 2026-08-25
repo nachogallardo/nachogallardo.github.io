@@ -13,9 +13,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        headline: ['Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        code: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        body: ['Inter Tight', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        headline: ['"Source Serif 4"', 'Georgia', '"Times New Roman"', 'serif'],
+        code: ['IBM Plex Mono', 'ui-monospace', 'monospace'],
       },
       colors: {
         background: 'hsl(var(--background))',
